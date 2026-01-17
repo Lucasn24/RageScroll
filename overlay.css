@@ -350,6 +350,58 @@
   min-height: 24px;
 }
 
+/* Container Standard */
+.snake-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff; /* Explicitly set to fix "faded" look */
+}
+
+.game-subtitle {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    min-height: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Centering the Board */
+.snake-board-wrapper {
+    background: #121212;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+}
+
+#snake-canvas {
+    display: block; /* Removes weird whitespace at bottom */
+}
+
+/* Status and Messages */
+.game-status-bar {
+    font-size: 1.2rem;
+    background: #222;
+    padding: 8px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.game-status-bar strong {
+    color: #4CAF50;
+}
+
+.game-message {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    min-height: 24px;
+    color: #333;
+}
+
 /* Break Warning Notification */
 .ragescroll-notification {
   position: fixed;
