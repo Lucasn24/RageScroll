@@ -280,6 +280,16 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#ragebreak-game-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .ragebreak-fly-layer {
@@ -808,6 +818,122 @@
   font-size: 1.5rem;
   color: #333;
   margin: 5px 0;
+}
+
+/* 2048 Styles */
+.game-2048 {
+  text-align: center;
+  color: #333;
+}
+
+.game-2048 h2 {
+  margin: 0 0 6px 0;
+}
+
+.score-2048 {
+  font-weight: 700;
+  margin: 10px 0 12px;
+}
+
+.board-2048 {
+  --tile-size: clamp(52px, 16vw, 72px);
+  display: grid;
+  grid-template-columns: repeat(4, var(--tile-size));
+  grid-template-rows: repeat(4, var(--tile-size));
+  gap: 10px;
+  background: #bbada0;
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  width: fit-content;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.tile-2048 {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border-radius: 8px;
+  background: #cdc1b4;
+  color: #776e65;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: clamp(16px, 4vw, 28px);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.tile-2 {
+  background: #eee4da;
+}
+.tile-4 {
+  background: #ede0c8;
+}
+.tile-8 {
+  background: #f2b179;
+  color: #f9f6f2;
+}
+.tile-16 {
+  background: #f59563;
+  color: #f9f6f2;
+}
+.tile-32 {
+  background: #f67c5f;
+  color: #f9f6f2;
+}
+.tile-64 {
+  background: #f65e3b;
+  color: #f9f6f2;
+}
+.tile-128 {
+  background: #edcf72;
+  color: #f9f6f2;
+  font-size: clamp(14px, 3.6vw, 24px);
+}
+.tile-256 {
+  background: #edcc61;
+  color: #f9f6f2;
+  font-size: clamp(14px, 3.6vw, 24px);
+}
+.tile-512 {
+  background: #edc850;
+  color: #f9f6f2;
+  font-size: clamp(14px, 3.6vw, 24px);
+}
+.tile-1024 {
+  background: #edc53f;
+  color: #f9f6f2;
+  font-size: clamp(12px, 3.2vw, 22px);
+}
+.tile-2048 {
+  background: #edc22e;
+  color: #f9f6f2;
+  font-size: clamp(12px, 3.2vw, 22px);
+}
+
+.controls-2048 {
+  margin-top: 12px;
+}
+
+.btn-2048 {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ff004d;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(255, 0, 77, 0.35);
+}
+
+.message-2048 {
+  min-height: 22px;
+  margin-top: 10px;
+  font-weight: 700;
 }
 
 /* Break Warning Notification */

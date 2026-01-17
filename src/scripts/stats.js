@@ -17,6 +17,7 @@ class StatsTracker {
           snake: 0,
           math: 0,
           webcam: 0,
+          "2048": 0,
         },
         totalTime: 0,
         currentStreak: 0,

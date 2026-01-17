@@ -31,6 +31,7 @@
         "src/scripts/games/snake.js",
         "src/scripts/games/math.js",
         "src/scripts/games/webcam-overlay.js",
+        "src/scripts/games/2048.js",
         "src/scripts/content_script.js",
         "src/scripts/notification.js"
       ],

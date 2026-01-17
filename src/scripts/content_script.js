@@ -97,7 +97,8 @@ function showBreakOverlay() {
   overlayShown = true;
 
   // Randomly select a game
-  const games = ["wordle", "sudoku", "memory", "snake", "math", "webcam"];
+  //const games = ["wordle", "sudoku", "memory", "snake", "math", "webcam", "2048"];
+  const games = ["2048"];
   const randomGame = games[Math.floor(Math.random() * games.length)];
   console.log("RageBreak: Randomly selected game:", randomGame);
 
@@ -178,6 +179,8 @@ function startGame(gameType, container) {
     initSnake(container);
   } else if (gameType === "math") {
     initMath(container);
+  } else if (gameType === "2048") {
+    init2048(container);
   }
 }
 
@@ -372,7 +375,15 @@ async function recordStats(gameType) {
     const result = await chrome.storage.local.get("ragebreak_stats");
     const stats = result.ragebreak_stats || {
       totalBreaks: 0,
-      gamesPlayed: { wordle: 0, sudoku: 0, memory: 0, snake: 0, math: 0, webcam: 0 },
+      gamesPlayed: {
+        wordle: 0,
+        sudoku: 0,
+        memory: 0,
+        snake: 0,
+        math: 0,
+        webcam: 0,
+        "2048": 0,
+      },
       currentStreak: 0,
       longestStreak: 0,
       lastBreakDate: null,
