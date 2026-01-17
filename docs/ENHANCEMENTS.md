@@ -3,6 +3,7 @@
 ## 🆕 New Features Added
 
 ### 1. **Memory Match Game** 🧠
+
 - Third mini-game option during breaks
 - 8 pairs of emoji cards (16 cards total)
 - Flip cards to find matching pairs
@@ -10,7 +11,8 @@
 - Fully integrated with statistics
 
 ### 2. **Statistics & Achievements System** 📊
-- Complete statistics tracking page ([stats.html](stats.html))
+
+- Complete statistics tracking page ([src/pages/stats.html](../src/pages/stats.html))
 - Tracks:
   - Total breaks taken
   - Current day streak
@@ -29,12 +31,14 @@
   - 🧠 Memory Master - Play Memory 25 times
 
 ### 3. **Keyboard Shortcuts** ⌨️
+
 - **Cmd/Ctrl + Shift + R** - Toggle extension on/off
 - **Cmd/Ctrl + Shift + S** - Skip next break
-- Dedicated shortcuts reference page ([shortcuts.html](shortcuts.html))
+- Dedicated shortcuts reference page ([src/pages/shortcuts.html](../src/pages/shortcuts.html))
 - Customizable via Chrome's extension shortcuts settings
 
 ### 4. **Break Warning Notifications** 🔔
+
 - 30-second warning before break appears
 - Slide-in notification from top-right
 - Dismissible notification
@@ -42,6 +46,7 @@
 - Non-intrusive design
 
 ### 5. **Expanded Wordle Dictionary** 📝
+
 - Increased from 10 to **50 words**
 - Tech-themed vocabulary
 - More replay value and variety
@@ -49,73 +54,82 @@
 ## 📦 Updated Files
 
 ### New Files Created:
-1. **notification.js** - Break warning system
-2. **stats.js** - Statistics tracking logic
-3. **stats.html** - Statistics page UI
-4. **stats-page.js** - Statistics page functionality
-5. **stats.css** - Statistics page styling
-6. **shortcuts.html** - Keyboard shortcuts reference
+
+1. **src/scripts/notification.js** - Break warning system
+2. **src/scripts/stats.js** - Statistics tracking logic
+3. **src/pages/stats.html** - Statistics page UI
+4. **src/scripts/stats-page.js** - Statistics page functionality
+5. **src/styles/stats.css** - Statistics page styling
+6. **src/pages/shortcuts.html** - Keyboard shortcuts reference
 
 ### Modified Files:
+
 1. **manifest.json** - Added commands, updated content scripts
-2. **content_script.js** - Added Memory game, stats recording, 50-word dictionary
-3. **overlay.css** - Memory game styles, notification styles
-4. **service_worker.js** - Keyboard shortcut handlers
-5. **options.html** - Added statistics button, shortcuts link
-6. **options.js** - Statistics page navigation
-7. **options.css** - Updated footer layout, link styles
-8. **README.md** - Updated features list, file structure
+2. **src/scripts/content_script.js** - Added Memory game, stats recording, 50-word dictionary
+3. **src/styles/overlay.css** - Memory game styles, notification styles
+4. **src/scripts/service_worker.js** - Keyboard shortcut handlers
+5. **src/pages/options.html** - Added statistics button, shortcuts link
+6. **src/scripts/options.js** - Statistics page navigation
+7. **src/styles/options.css** - Updated footer layout, link styles
+8. **docs/README.md** - Updated features list, file structure
 
 ## 🎯 Feature Comparison
 
-| Feature | MVP | Enhanced |
-|---------|-----|----------|
-| Mini-games | 2 (Wordle, Sudoku) | **3** (+ Memory Match) |
-| Wordle words | 10 | **50** |
-| Statistics | ❌ | ✅ Full tracking |
-| Achievements | ❌ | ✅ 9 achievements |
-| Keyboard shortcuts | ❌ | ✅ 2 shortcuts |
-| Break warnings | ❌ | ✅ 30-sec warning |
-| Daily streaks | ❌ | ✅ With history |
+| Feature            | MVP                | Enhanced               |
+| ------------------ | ------------------ | ---------------------- |
+| Mini-games         | 2 (Wordle, Sudoku) | **3** (+ Memory Match) |
+| Wordle words       | 10                 | **50**                 |
+| Statistics         | ❌                 | ✅ Full tracking       |
+| Achievements       | ❌                 | ✅ 9 achievements      |
+| Keyboard shortcuts | ❌                 | ✅ 2 shortcuts         |
+| Break warnings     | ❌                 | ✅ 30-sec warning      |
+| Daily streaks      | ❌                 | ✅ With history        |
 
 ## 📊 Complete File Structure
 
 ```
 RageScroll/
-├── Core Extension (5 files)
-│   ├── manifest.json
-│   ├── service_worker.js
-│   ├── content_script.js
-│   ├── notification.js
-│   └── overlay.css
-│
-├── User Interface (3 sets)
-│   ├── popup.html/js/css           # Main popup
-│   ├── options.html/js/css         # Settings page
-│   └── stats.html/stats-page.js/css # Statistics page
-│
-├── Additional Pages (2 files)
-│   ├── shortcuts.html              # Keyboard shortcuts
-│   └── stats.js                    # Stats helper
-│
-├── Assets (4 files)
+├── manifest.json
+├── src/
+│   ├── scripts/
+│   │   ├── content_script.js
+│   │   ├── notification.js
+│   │   ├── options.js
+│   │   ├── popup.js
+│   │   ├── service_worker.js
+│   │   ├── stats-page.js
+│   │   └── stats.js
+│   ├── styles/
+│   │   ├── options.css
+│   │   ├── overlay.css
+│   │   ├── popup.css
+│   │   └── stats.css
+│   └── pages/
+│       ├── options.html
+│       ├── popup.html
+│       ├── shortcuts.html
+│       ├── stats.html
+│       └── test.html
+├── assets/
 │   ├── icon16.png
 │   ├── icon48.png
 │   ├── icon128.png
-│   └── create_simple_icons.py
-│
-└── Documentation (4 files)
-    ├── README.md
-    ├── INSTALL.md
-    ├── CHECKLIST.md
-    └── assets/README.md
-
-Total: 25 files
+│   ├── create_icons.py
+│   ├── create_simple_icons.py
+│   └── README.md
+└── docs/
+  ├── README.md
+  ├── INSTALL.md
+  ├── CHECKLIST.md
+  ├── ENHANCEMENTS.md
+  ├── PACKAGE_SUMMARY.md
+  └── TROUBLESHOOTING.md
 ```
 
 ## ✅ Testing Checklist
 
 ### New Features Testing:
+
 - [ ] Memory Match game works correctly
 - [ ] Cards flip with animation
 - [ ] Matched pairs stay revealed
@@ -132,6 +146,7 @@ Total: 25 files
 - [ ] All 50 Wordle words accessible
 
 ### Integration Testing:
+
 - [ ] Stats recorded for all 3 games
 - [ ] Daily streak increments correctly
 - [ ] Statistics persist across sessions
@@ -143,17 +158,20 @@ Total: 25 files
 ## 🚀 Usage Instructions
 
 ### Statistics Page:
+
 1. Go to Settings (⚙️)
 2. Click "📊 View Statistics"
 3. View your progress and achievements
 4. Click "Reset Statistics" to clear all data
 
 ### Keyboard Shortcuts:
+
 1. **Toggle Extension:** Cmd/Ctrl + Shift + R
 2. **Skip Next Break:** Cmd/Ctrl + Shift + S
 3. Customize at: chrome://extensions/shortcuts
 
 ### Memory Match Game:
+
 1. Wait for break or set 1-minute interval
 2. Select "🧠 Memory Match"
 3. Click cards to flip and find pairs
@@ -162,6 +180,7 @@ Total: 25 files
 ## 📈 Statistics Tracking
 
 All stats are stored locally using `chrome.storage.local`:
+
 - Total breaks taken
 - Games played (by type)
 - Current streak (consecutive days)
@@ -201,6 +220,7 @@ Statistics reset button available on stats page.
 ## 🎉 Summary
 
 The RageScroll extension has been significantly enhanced with:
+
 - **3 mini-games** (was 2)
 - **Full statistics tracking** with 9 achievements
 - **Keyboard shortcuts** for power users

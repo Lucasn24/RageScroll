@@ -5,20 +5,24 @@
 Your complete RageScroll Chrome Extension with all files ready to use:
 
 ✅ **Core Extension Files:**
+
 - manifest.json (Manifest V3 configuration)
-- service_worker.js (Background timing & state management)
-- content_script.js (Activity tracking & game overlay)
-- overlay.css (Fullscreen break overlay styles)
+- src/scripts/service_worker.js (Background timing & state management)
+- src/scripts/content_script.js (Activity tracking & game overlay)
+- src/styles/overlay.css (Fullscreen break overlay styles)
 
 ✅ **User Interface:**
-- popup.html/js/css (Extension popup with countdown)
-- options.html/js/css (Settings page)
+
+- src/pages/popup.html, src/scripts/popup.js, src/styles/popup.css (Extension popup with countdown)
+- src/pages/options.html, src/scripts/options.js, src/styles/options.css (Settings page)
 
 ✅ **Assets:**
+
 - icon16.png, icon48.png, icon128.png (Extension icons)
 
 ✅ **Documentation:**
-- README.md (Complete user guide)
+
+- docs/README.md (Complete user guide)
 
 ## Install in 3 Steps
 
@@ -39,6 +43,7 @@ Your complete RageScroll Chrome Extension with all files ready to use:
 ## Test Mode
 
 For quick testing:
+
 - Set break interval to 1 minute
 - Add `*` to active websites (monitors all sites)
 - Scroll/click on any webpage
@@ -47,15 +52,18 @@ For quick testing:
 ## Features
 
 🎮 **Two Mini-Games:**
+
 - Mini Wordle (guess 4-letter words)
 - 4x4 Sudoku (fill the grid)
 
 ⏱️ **Smart Tracking:**
+
 - Only tracks when you're active
 - Monitors scroll, click, keypress
 - Opt-in per website
 
 🎯 **Full Control:**
+
 - Enable/disable anytime
 - Skip breaks when needed
 - Choose your own schedule
@@ -63,6 +71,7 @@ For quick testing:
 ## Support
 
 If you encounter issues:
+
 1. Check `chrome://extensions/` for error messages
 2. Right-click extension icon → "Inspect popup"
 3. Check browser console for errors
