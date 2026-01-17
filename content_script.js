@@ -6,6 +6,8 @@ console.log('RageScroll Content Script: LOADED');
 let activityTimeout;
 let overlayShown = false;
 let activityDetected = false;
+let alarmAudioContext = null;
+let alarmIntervalId = null;
 
 // Throttle activity detection to avoid spamming service worker
 const throttledActivityDetection = throttle(() => {
@@ -113,6 +115,8 @@ function showBreakOverlay() {
   // Prevent scrolling on body
   document.body.style.overflow = 'hidden';
   console.log('RageScroll: Body overflow set to hidden');
+
+  startAlarmSound();
   
   // Start the randomly selected game immediately
   const container = document.getElementById('ragescroll-game-container');
@@ -471,6 +475,8 @@ async function closeOverlay(gameType) {
   
   overlayShown = false;
   document.body.style.overflow = '';
+
+  stopAlarmSound();
   
   // Record stats
   if (gameType) {
@@ -479,6 +485,45 @@ async function closeOverlay(gameType) {
   
   // Notify service worker that break is completed
   chrome.runtime.sendMessage({ type: 'BREAK_COMPLETED' });
+}
+
+function startAlarmSound() {
+  if (alarmIntervalId) return;
+  try {
+    alarmAudioContext = alarmAudioContext || new (window.AudioContext || window.webkitAudioContext)();
+    let toggle = false;
+    const beep = () => {
+      toggle = !toggle;
+      const oscillator = alarmAudioContext.createOscillator();
+      const gainNode = alarmAudioContext.createGain();
+      oscillator.type = 'sawtooth';
+      oscillator.frequency.value = toggle ? 1600 : 900;
+      gainNode.gain.value = 0.3;
+      oscillator.connect(gainNode);
+      gainNode.connect(alarmAudioContext.destination);
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+        oscillator.disconnect();
+        gainNode.disconnect();
+      }, 1500);
+    };
+
+    beep();
+    alarmIntervalId = setInterval(beep, 2200);
+  } catch (error) {
+    console.warn('RageScroll: Unable to play alarm sound', error);
+  }
+}
+
+function stopAlarmSound() {
+  if (alarmIntervalId) {
+    clearInterval(alarmIntervalId);
+    alarmIntervalId = null;
+  }
+  if (alarmAudioContext && alarmAudioContext.state === 'running') {
+    alarmAudioContext.suspend();
+  }
 }
 
 // Record statistics
