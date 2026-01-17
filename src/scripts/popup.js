@@ -107,13 +107,9 @@ optionsBtn.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
 });
 
-// Skip next break
+// Restart countdown
 skipBtn.addEventListener("click", async () => {
-  const now = Date.now();
-  await chrome.storage.sync.set({
-    lastBreakTime: now,
-    activityStartTime: now,
-  });
+  await chrome.runtime.sendMessage({ type: "RESTART_COUNTDOWN" });
   updateCountdown();
 });
 

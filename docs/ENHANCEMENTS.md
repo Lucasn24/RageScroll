@@ -33,7 +33,7 @@
 ### 3. **Keyboard Shortcuts** ⌨️
 
 - **Cmd/Ctrl + Shift + R** - Toggle extension on/off
-- **Cmd/Ctrl + Shift + S** - Skip next break
+- **Cmd/Ctrl + Shift + S** - Restart countdown
 - Dedicated shortcuts reference page ([src/pages/shortcuts.html](../src/pages/shortcuts.html))
 - Customizable via Chrome's extension shortcuts settings
 
@@ -167,7 +167,7 @@ RageBreak/
 ### Keyboard Shortcuts:
 
 1. **Toggle Extension:** Cmd/Ctrl + Shift + R
-2. **Skip Next Break:** Cmd/Ctrl + Shift + S
+2. **Restart Countdown:** Cmd/Ctrl + Shift + S
 3. Customize at: chrome://extensions/shortcuts
 
 ### Memory Match Game:

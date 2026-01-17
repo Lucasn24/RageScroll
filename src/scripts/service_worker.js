@@ -45,6 +45,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse(response);
     });
     return true; // Async response
+  } else if (message.type === "RESTART_COUNTDOWN") {
+    restartCountdown().then(sendResponse);
+    return true;
   } else if (message.type === "BREAK_COMPLETED") {
     handleBreakCompleted();
   } else if (message.type === "WEBCAM_COMPLETED") {
@@ -179,6 +182,13 @@ async function handleBreakCompleted() {
   });
 }
 
+async function restartCountdown() {
+  await handleBreakCompleted();
+  notifyCloseOverlay();
+  await updateBadge();
+  return { ok: true };
+}
+
 function notifyCloseOverlay() {
   chrome.storage.sync.get(DEFAULT_SETTINGS, (settings) => {
     if (!settings.lastActiveTabId) return;
@@ -244,11 +254,6 @@ chrome.commands.onCommand.addListener(async (command) => {
 
     updateBadge();
   } else if (command === "skip-next-break") {
-    const now = Date.now();
-    await chrome.storage.sync.set({
-      lastBreakTime: now,
-      activityStartTime: now,
-    });
-    updateBadge();
+    await restartCountdown();
   }
 });
