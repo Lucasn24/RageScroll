@@ -202,7 +202,7 @@ RageBreak/
 **Overlay not showing:**
 
 - Ensure break interval has passed
-- Try clicking "Skip Next" to reset timer
+- Try clicking "Restart" to reset timer
 - Check that activity is being detected (scroll/click/type)
 
 **Games not loading:**

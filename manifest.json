@@ -60,7 +60,7 @@
         "default": "Ctrl+Shift+S",
         "mac": "Command+Shift+S"
       },
-      "description": "Skip next break"
+      "description": "Restart"
     }
   }
 }
