@@ -54,7 +54,7 @@
 - [x] Break interval selector
 - [x] Domain management (add/remove websites)
 - [x] Quick preset buttons for popular sites
-- [x] "Restart Countdown" button to reset timer
+- [x] "Restart" button to reset timer
 
 ### Mini Games
 

@@ -107,7 +107,7 @@ optionsBtn.addEventListener("click", () => {
   chrome.runtime.openOptionsPage();
 });
 
-// Restart countdown
+// Restart
 skipBtn.addEventListener("click", async () => {
   await chrome.runtime.sendMessage({ type: "RESTART_COUNTDOWN" });
   updateCountdown();

@@ -60,7 +60,7 @@
         "default": "Ctrl+Shift+S",
         "mac": "Command+Shift+S"
       },
-      "description": "Restart countdown"
+      "description": "Restart"
     }
   }
 }

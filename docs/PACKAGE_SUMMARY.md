@@ -133,7 +133,7 @@ Your **RageBreak** Chrome Extension is now feature-complete with significant enh
 ## ⌨️ Keyboard Shortcuts
 
 - **Cmd/Ctrl + Shift + R** - Toggle extension on/off
-- **Cmd/Ctrl + Shift + S** - Restart countdown
+- **Cmd/Ctrl + Shift + S** - Restart
 - Customizable via `chrome://extensions/shortcuts`
 
 ## 🔧 Technical Highlights
