@@ -76,8 +76,14 @@ function showBreakOverlay() {
   overlay.innerHTML = `
     <div class="ragescroll-content">
       <div class="ragescroll-header">
-        <h1>🎮 Time for a Micro-Break!</h1>
-        <p>Complete a quick challenge to continue browsing</p>
+        <h1>Still Scrolling?</h1>
+        <h3>
+            You've been here long enough.<br/>
+            Prove you deserve the next scroll.<br/>
+        </h3>
+        <p>
+            Beat this. Or stay stuck here forever.
+        </p>
       </div>
       
       <div class="ragescroll-game-selector">
