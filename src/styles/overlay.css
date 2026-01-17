@@ -516,19 +516,19 @@
   display: grid;
   grid-template-columns: repeat(4, 70px);
   grid-template-rows: repeat(4, 70px);
-  gap: 2px;
+  gap: 0;
   justify-content: center;
   margin: 0 auto 20px;
-  background: #333;
-  padding: 2px;
-  border-radius: 4px;
+  background: transparent;
+  padding: 0;
+  border-radius: 6px;
   width: fit-content;
 }
 
 .sudoku-cell {
   width: 70px;
   height: 70px;
-  border: 1px solid #999;
+  border: 1px solid #d0d4e1;
   font-size: 28px;
   font-weight: bold;
   text-align: center;
