@@ -1,8 +1,8 @@
-# RageBreak
+# 🎮 RageBreak
 
-RageScroll is a Manifest V3 Chrome extension that enforces micro‑breaks while you browse. When the timer hits, a fullscreen overlay appears and you must finish a mini‑game to continue scrolling. It is designed to be lightweight, fully offline, and configurable per website.
+RageBreak is a Manifest V3 Chrome extension that enforces micro‑breaks while you browse. When the timer hits, a fullscreen overlay appears and you must finish a mini‑game to continue scrolling. It is designed to be lightweight, fully offline, and configurable per website.
 
-## Why RageScroll
+## Why RageBreak
 
 - Reduce “doomscrolling” by adding a friendly pause.
 - Keep you in control with configurable timing and site targeting.
@@ -21,7 +21,7 @@ RageScroll is a Manifest V3 Chrome extension that enforces micro‑breaks while 
 ## Installation (Load Unpacked)
 
 1. Open chrome://extensions/
-2. Enable Developer mode (top‑right toggle)
+2. Enable Developer mode
 3. Click Load unpacked
 4. Select the RageScroll/RageBreak folder
 5. Pin the extension (optional)
@@ -41,7 +41,7 @@ RageScroll is a Manifest V3 Chrome extension that enforces micro‑breaks while 
 - **Memory Match**: match all emoji pairs.
 - **Snake**: reach a target score.
 - **Math Challenge**: timed streak of correct answers.
-- **Webcam Break**: reps counted via motion detection.
+- **67 Break**: reps counted via motion detection.
 - **Mini 2048**: reach a 512 tile or score to clear.
 
 ## Configuration
@@ -54,8 +54,8 @@ Set the interval in minutes from the popup. The timer counts only while activity
 
 Add domains in Settings to control where breaks are enforced:
 
-- `*` applies to all sites
-- `youtube.com`, `reddit.com`, `tiktok.com` for specific sites
+- * applies to all sites
+- youtube.com, reddit.com, tiktok.com for specific sites
 
 ### Keyboard Shortcuts
 
@@ -72,7 +72,7 @@ Visit the stats page from Settings to see:
 
 ## Audio
 
-Celebration audio is played after finishing a break. If you add your own sound file in assets/, it must be exposed via web accessible resources in manifest.json.
+Celebration audio plays after finishing a break. If you add your own sound file in assets/, it must be exposed via web accessible resources in manifest.json.
 
 ## File Structure (High Level)
 
@@ -85,9 +85,9 @@ Celebration audio is played after finishing a break. If you add your own sound f
 
 ## Core Architecture
 
-- **Service Worker**: manages timers, break scheduling, and messaging.
-- **Content Script**: injects overlay, tracks activity, runs games.
-- **Storage**: chrome.storage.sync for settings, chrome.storage.local for stats.
+- Service worker manages timing, scheduling, and state.
+- Content script injects the overlay, tracks activity, and runs games.
+- Storage uses chrome.storage.sync for settings and chrome.storage.local for stats.
 
 ## Permissions (MV3)
 
