@@ -6,6 +6,8 @@ console.log('RageScroll Content Script: LOADED');
 let activityTimeout;
 let overlayShown = false;
 let activityDetected = false;
+let alarmAudioContext = null;
+let alarmIntervalId = null;
 
 // Throttle activity detection to avoid spamming service worker
 const throttledActivityDetection = throttle(() => {
@@ -67,44 +69,34 @@ function showBreakOverlay() {
   console.log('RageScroll: Creating break overlay');
   overlayShown = true;
   
+  // Randomly select a game
+  const games = ['wordle', 'sudoku', 'memory'];
+  const randomGame = games[Math.floor(Math.random() * games.length)];
+  console.log('RageScroll: Randomly selected game:', randomGame);
+  
   // Create overlay container
   const overlay = document.createElement('div');
   overlay.id = 'ragescroll-overlay';
   overlay.className = 'ragescroll-overlay';
   
-  // Create overlay content
+  // Create overlay content (without game selector)
   overlay.innerHTML = `
     <div class="ragescroll-content">
       <div class="ragescroll-header">
-        <h1>🎮 Time for a Micro-Break!</h1>
-        <p>Complete a quick challenge to continue browsing</p>
-      </div>
-      
-      <div class="ragescroll-game-selector">
-        <button class="game-btn" data-game="wordle">
-          📝 Mini Wordle
-        </button>
-        <button class="game-btn" data-game="sudoku">
-          🔢 4x4 Sudoku
-        </button>
-        <button class="game-btn" data-game="memory">
-          🧠 Memory Match
-        </button>
+        <h1>Still Scrolling?</h1>
+        <h3>
+            You've been here long enough.<br/>
+            Prove you deserve the next scroll.<br/>
+        </h3>
+        <p>
+            Beat this. Or stay stuck here forever.
+        </p>
       </div>
       
       <div id="ragescroll-game-container"></div>
     </div>
   `;
   console.log('RageScroll: Overlay added to page');
-  
-  // Add event listeners for game selection
-  overlay.querySelectorAll('.game-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const game = e.target.dataset.game;
-      console.log('RageScroll: Starting game:', game);
-      startGame(game);
-    });
-  });
   
   // Append overlay to document
   console.log('RageScroll: About to append overlay to body');
@@ -123,14 +115,19 @@ function showBreakOverlay() {
   // Prevent scrolling on body
   document.body.style.overflow = 'hidden';
   console.log('RageScroll: Body overflow set to hidden');
+
+  startAlarmSound();
+  
+  // Start the randomly selected game immediately
+  const container = document.getElementById('ragescroll-game-container');
+  startGame(randomGame, container);
 }
 
 // Start selected game
-function startGame(gameType) {
-  const container = document.getElementById('ragescroll-game-container');
-  const selector = document.querySelector('.ragescroll-game-selector');
-  
-  selector.style.display = 'none';
+function startGame(gameType, container) {
+  if (!container) {
+    container = document.getElementById('ragescroll-game-container');
+  }
   
   if (gameType === 'wordle') {
     initWordle(container);
@@ -639,6 +636,8 @@ async function closeOverlay(gameType) {
   
   overlayShown = false;
   document.body.style.overflow = '';
+
+  stopAlarmSound();
   
   // Record stats
   if (gameType) {
@@ -647,6 +646,45 @@ async function closeOverlay(gameType) {
   
   // Notify service worker that break is completed
   chrome.runtime.sendMessage({ type: 'BREAK_COMPLETED' });
+}
+
+function startAlarmSound() {
+  if (alarmIntervalId) return;
+  try {
+    alarmAudioContext = alarmAudioContext || new (window.AudioContext || window.webkitAudioContext)();
+    let toggle = false;
+    const beep = () => {
+      toggle = !toggle;
+      const oscillator = alarmAudioContext.createOscillator();
+      const gainNode = alarmAudioContext.createGain();
+      oscillator.type = 'sawtooth';
+      oscillator.frequency.value = toggle ? 1600 : 900;
+      gainNode.gain.value = 0.3;
+      oscillator.connect(gainNode);
+      gainNode.connect(alarmAudioContext.destination);
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+        oscillator.disconnect();
+        gainNode.disconnect();
+      }, 1500);
+    };
+
+    beep();
+    alarmIntervalId = setInterval(beep, 2200);
+  } catch (error) {
+    console.warn('RageScroll: Unable to play alarm sound', error);
+  }
+}
+
+function stopAlarmSound() {
+  if (alarmIntervalId) {
+    clearInterval(alarmIntervalId);
+    alarmIntervalId = null;
+  }
+  if (alarmAudioContext && alarmAudioContext.state === 'running') {
+    alarmAudioContext.suspend();
+  }
 }
 
 // Record statistics
