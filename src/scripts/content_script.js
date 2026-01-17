@@ -372,7 +372,7 @@ async function recordStats(gameType) {
     const result = await chrome.storage.local.get("ragebreak_stats");
     const stats = result.ragebreak_stats || {
       totalBreaks: 0,
-      gamesPlayed: { wordle: 0, sudoku: 0, memory: 0 },
+      gamesPlayed: { wordle: 0, sudoku: 0, memory: 0, snake: 0, math: 0, webcam: 0 },
       currentStreak: 0,
       longestStreak: 0,
       lastBreakDate: null,

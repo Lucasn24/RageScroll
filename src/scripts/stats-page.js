@@ -4,7 +4,7 @@ async function loadStats() {
   const result = await chrome.storage.local.get("ragebreak_stats");
   const stats = result.ragebreak_stats || {
     totalBreaks: 0,
-    gamesPlayed: { wordle: 0, sudoku: 0, memory: 0 },
+    gamesPlayed: { wordle: 0, sudoku: 0, memory: 0, snake: 0, math: 0, webcam: 0 },
     currentStreak: 0,
     longestStreak: 0,
     dailyBreaks: {},
@@ -22,11 +22,17 @@ async function loadStats() {
 
   // Games played
   document.getElementById("wordle-count").textContent =
-    stats.gamesPlayed.wordle;
+    stats.gamesPlayed.wordle || 0;
   document.getElementById("sudoku-count").textContent =
-    stats.gamesPlayed.sudoku;
+    stats.gamesPlayed.sudoku || 0;
   document.getElementById("memory-count").textContent =
-    stats.gamesPlayed.memory;
+    stats.gamesPlayed.memory || 0;
+  document.getElementById("snake-count").textContent =
+    stats.gamesPlayed.snake || 0;
+  document.getElementById("math-count").textContent =
+    stats.gamesPlayed.math || 0;
+  document.getElementById("webcam-count").textContent =
+    stats.gamesPlayed.webcam || 0;
 
   // Achievements
   renderAchievements(stats);
@@ -96,6 +102,27 @@ function renderAchievements(stats) {
       name: "Memory Master",
       desc: "Play Memory 25 times",
       check: stats.gamesPlayed.memory >= 25,
+    },
+    {
+      id: "snake-master",
+      icon: "🐍",
+      name: "Snake Slayer",
+      desc: "Play Snake 25 times",
+      check: (stats.gamesPlayed.snake || 0) >= 25,
+    },
+    {
+      id: "math-master",
+      icon: "➕",
+      name: "Math Wizard",
+      desc: "Play Math Challenge 25 times",
+      check: (stats.gamesPlayed.math || 0) >= 25,
+    },
+    {
+      id: "webcam-master",
+      icon: "📷",
+      name: "Camera Champion",
+      desc: "Take 25 Webcam Breaks",
+      check: (stats.gamesPlayed.webcam || 0) >= 25,
     },
   ];
 
