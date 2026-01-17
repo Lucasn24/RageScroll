@@ -13,6 +13,7 @@ let warningIntervalId = null;
 let webcamStream = null;
 let webcamAutoRepActive = false;
 let webcamAutoRepRafId = null;
+let audioUnlocked = false;
 
 function safeSendMessage(message) {
   if (!chrome.runtime?.id) {
@@ -41,8 +42,24 @@ function trackActivity() {
   if (overlayShown) return;
 
   activityDetected = true;
+  unlockAudioContext();
   console.log("RageBreak Content: Activity detected");
   throttledActivityDetection();
+}
+
+function unlockAudioContext() {
+  if (audioUnlocked) return;
+  try {
+    alarmAudioContext =
+      alarmAudioContext ||
+      new (window.AudioContext || window.webkitAudioContext)();
+    if (alarmAudioContext.state === "suspended") {
+      alarmAudioContext.resume();
+    }
+    audioUnlocked = true;
+  } catch (error) {
+    // Ignore audio unlock errors
+  }
 }
 
 // Add event listeners for activity tracking
@@ -97,7 +114,8 @@ function showBreakOverlay() {
   overlayShown = true;
 
   // Randomly select a game
-  const games = ["wordle", "sudoku", "memory", "snake", "math", "webcam", "2048"];
+  //const games = ["wordle", "sudoku", "memory", "snake", "math", "webcam", "2048"];
+  const games = ["2048"]
   const randomGame = games[Math.floor(Math.random() * games.length)];
   console.log("RageBreak: Randomly selected game:", randomGame);
 
@@ -198,6 +216,9 @@ function startGame(gameType, container) {
 
 // Close overlay and notify service worker
 async function closeOverlay(gameType) {
+  if (gameType) {
+    showCelebration(gameType);
+  }
   const overlay = document.getElementById("ragebreak-overlay");
   if (overlay) {
     overlay.remove();
@@ -218,6 +239,72 @@ async function closeOverlay(gameType) {
 
   // Notify service worker that break is completed
   safeSendMessage({ type: "BREAK_COMPLETED" });
+}
+
+function showCelebration(gameType) {
+  playCelebrationSound();
+  const celebration = document.createElement("div");
+  celebration.className = "ragebreak-celebration";
+  celebration.innerHTML = `
+    <div class="celebration-card">
+      <div class="celebration-title">🎉 Break Complete!</div>
+      <div class="celebration-subtitle">Nice work finishing ${gameType}.</div>
+    </div>
+  `;
+  document.body.appendChild(celebration);
+
+  const floaters = ["🎊", "✨", "🎉", "💫", "🥳", "⭐", "🎈"];
+  for (let i = 0; i < 16; i += 1) {
+    const floater = document.createElement("div");
+    floater.className = "celebration-floater";
+    floater.textContent = floaters[i % floaters.length];
+    floater.style.left = `${Math.random() * 100}%`;
+    floater.style.animationDelay = `${Math.random() * 0.4}s`;
+    floater.style.fontSize = `${18 + Math.random() * 20}px`;
+    celebration.appendChild(floater);
+  }
+
+  setTimeout(() => {
+    celebration.remove();
+  }, 1400);
+}
+
+function playCelebrationSound() {
+  try {
+    const audioCtx =
+      alarmAudioContext ||
+      new (window.AudioContext || window.webkitAudioContext)();
+    alarmAudioContext = audioCtx;
+    if (audioCtx.state === "suspended") {
+      audioCtx.resume();
+    }
+
+    const now = audioCtx.currentTime;
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.setValueAtTime(0.001, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.25, now + 0.02);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+    gainNode.connect(audioCtx.destination);
+
+    const osc1 = audioCtx.createOscillator();
+    osc1.type = "triangle";
+    osc1.frequency.setValueAtTime(523.25, now);
+    osc1.frequency.exponentialRampToValueAtTime(783.99, now + 0.6);
+
+    const osc2 = audioCtx.createOscillator();
+    osc2.type = "triangle";
+    osc2.frequency.setValueAtTime(659.25, now);
+    osc2.frequency.exponentialRampToValueAtTime(987.77, now + 0.6);
+
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + 1.4);
+    osc2.stop(now + 1.4);
+  } catch (error) {
+    console.warn("RageBreak: Unable to play celebration sound", error);
+  }
 }
 
 function stopWebcamStream() {

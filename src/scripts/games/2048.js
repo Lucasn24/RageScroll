@@ -24,15 +24,18 @@ function init2048(container) {
   const messageEl = container.querySelector("#message-2048");
   const resetBtn = container.querySelector("#reset-2048");
 
-  function render() {
+  function render(prevGrid = null) {
     boardEl.innerHTML = "";
-    grid.forEach((row) => {
-      row.forEach((value) => {
+    grid.forEach((row, r) => {
+      row.forEach((value, c) => {
         const cell = document.createElement("div");
-        cell.className = "tile-2048";
+        cell.className = "tile-2048-cell";
         if (value) {
           cell.classList.add(`tile-${value}`);
           cell.textContent = value;
+          if (prevGrid && prevGrid[r][c] !== value) {
+            cell.classList.add("tile-pop");
+          }
         }
         boardEl.appendChild(cell);
       });
@@ -172,6 +175,8 @@ function init2048(container) {
     if (!keys.includes(event.key)) return;
     event.preventDefault();
 
+    const prevGrid = grid.map((row) => [...row]);
+
     let moved = false;
     if (event.key === "ArrowLeft") moved = moveLeft();
     if (event.key === "ArrowRight") moved = moveRight();
@@ -180,7 +185,7 @@ function init2048(container) {
 
     if (moved) {
       addRandomTile();
-      render();
+      render(prevGrid);
     }
   }
 
