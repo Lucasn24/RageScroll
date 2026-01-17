@@ -67,12 +67,17 @@ function showBreakOverlay() {
   console.log('RageScroll: Creating break overlay');
   overlayShown = true;
   
+  // Randomly select a game
+  const games = ['wordle', 'sudoku', 'memory'];
+  const randomGame = games[Math.floor(Math.random() * games.length)];
+  console.log('RageScroll: Randomly selected game:', randomGame);
+  
   // Create overlay container
   const overlay = document.createElement('div');
   overlay.id = 'ragescroll-overlay';
   overlay.className = 'ragescroll-overlay';
   
-  // Create overlay content
+  // Create overlay content (without game selector)
   overlay.innerHTML = `
     <div class="ragescroll-content">
       <div class="ragescroll-header">
@@ -86,31 +91,10 @@ function showBreakOverlay() {
         </p>
       </div>
       
-      <div class="ragescroll-game-selector">
-        <button class="game-btn" data-game="wordle">
-          📝 Mini Wordle
-        </button>
-        <button class="game-btn" data-game="sudoku">
-          🔢 4x4 Sudoku
-        </button>
-        <button class="game-btn" data-game="memory">
-          🧠 Memory Match
-        </button>
-      </div>
-      
       <div id="ragescroll-game-container"></div>
     </div>
   `;
   console.log('RageScroll: Overlay added to page');
-  
-  // Add event listeners for game selection
-  overlay.querySelectorAll('.game-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const game = e.target.dataset.game;
-      console.log('RageScroll: Starting game:', game);
-      startGame(game);
-    });
-  });
   
   // Append overlay to document
   console.log('RageScroll: About to append overlay to body');
@@ -129,14 +113,17 @@ function showBreakOverlay() {
   // Prevent scrolling on body
   document.body.style.overflow = 'hidden';
   console.log('RageScroll: Body overflow set to hidden');
+  
+  // Start the randomly selected game immediately
+  const container = document.getElementById('ragescroll-game-container');
+  startGame(randomGame, container);
 }
 
 // Start selected game
-function startGame(gameType) {
-  const container = document.getElementById('ragescroll-game-container');
-  const selector = document.querySelector('.ragescroll-game-selector');
-  
-  selector.style.display = 'none';
+function startGame(gameType, container) {
+  if (!container) {
+    container = document.getElementById('ragescroll-game-container');
+  }
   
   if (gameType === 'wordle') {
     initWordle(container);
