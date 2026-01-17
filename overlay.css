@@ -124,6 +124,67 @@
   animation: warningPop 1.6s ease-in-out forwards;
 }
 
+.webcam-game {
+  text-align: center;
+}
+
+.webcam-game h2 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.webcam-game p {
+  margin: 0 0 16px 0;
+  color: #666;
+}
+
+.webcam-preview {
+  width: min(480px, 90vw);
+  height: auto;
+  border-radius: 16px;
+  background: #111;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  margin: 0 auto 16px;
+}
+
+.webcam-stats {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #333;
+}
+
+.webcam-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.webcam-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ff004d;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(255, 0, 77, 0.35);
+}
+
+.webcam-btn.secondary {
+  background: #333;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.webcam-message {
+  margin-top: 10px;
+  font-weight: 700;
+  color: #ff004d;
+}
+
 @keyframes warningPop {
   0% { transform: scale(0.4); opacity: 0; }
   30% { transform: scale(1.05); opacity: 1; }

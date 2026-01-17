@@ -11,7 +11,11 @@
   "permissions": [
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "alarms",
+    "tabs",
+    "videoCapture",
+    "windows"
   ],
   "host_permissions": [
     "<all_urls>"

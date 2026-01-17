@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RageScroll Webcam Challenge</title>
+    <link rel="stylesheet" href="webcam.css" />
+  </head>
+  <body>
+    <div class="webcam-window">
+      <h1>Webcam Rush</h1>
+      <p>Move your hands up and down with upward-facing palms. Press space or click Rep for each rep.</p>
+      <video id="webcam-preview" autoplay playsinline muted></video>
+      <div class="stats">
+        <span>Reps: <strong id="webcam-reps">0</strong> / 67</span>
+        <span>Time: <strong id="webcam-time">25</strong>s</span>
+      </div>
+      <div class="controls">
+        <button id="webcam-start">Start</button>
+        <button id="webcam-rep">Rep</button>
+        <button id="webcam-finish">Finish</button>
+      </div>
+      <div id="webcam-message" class="message"></div>
+    </div>
+    <script src="webcam.js"></script>
+  </body>
+</html>

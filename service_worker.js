@@ -10,7 +10,8 @@ const DEFAULT_SETTINGS = {
   activeDomains: ['*'], // '*' means all domains
   lastBreakTime: 0,
   activityStartTime: 0,
-  isActive: false
+  isActive: false,
+  lastActiveTabId: null
 };
 
 // Initialize extension on install
@@ -35,6 +36,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
   if (message.type === 'ACTIVITY_DETECTED') {
     handleActivityDetected(sender.tab.id);
+  } else if (message.type === 'OPEN_WEBCAM_WINDOW') {
+    openWebcamWindow().then(sendResponse);
+    return true;
   } else if (message.type === 'GET_TIME_REMAINING') {
     getTimeRemaining().then(response => {
       console.log('RageScroll: Sending time remaining:', response);
@@ -43,6 +47,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Async response
   } else if (message.type === 'BREAK_COMPLETED') {
     handleBreakCompleted();
+  } else if (message.type === 'WEBCAM_COMPLETED') {
+    handleBreakCompleted();
+    notifyCloseOverlay();
   } else if (message.type === 'CHECK_SHOULD_SHOW_BREAK') {
     checkShouldShowBreak(sender.tab.url).then(sendResponse);
     return true; // Async response
@@ -66,10 +73,13 @@ async function handleActivityDetected(tabId) {
     await chrome.storage.sync.set({ 
       activityStartTime: now,
       lastBreakTime: now,
-      isActive: true 
+      isActive: true,
+      lastActiveTabId: tabId
     });
     return;
   }
+
+  await chrome.storage.sync.set({ lastActiveTabId: tabId });
   
   // Check if it's time for a break
   const timeSinceLastBreak = now - (settings.lastBreakTime || now);
@@ -166,6 +176,28 @@ async function handleBreakCompleted() {
   await chrome.storage.sync.set({ 
     lastBreakTime: now,
     activityStartTime: now
+  });
+}
+
+function notifyCloseOverlay() {
+  chrome.storage.sync.get(DEFAULT_SETTINGS, (settings) => {
+    if (!settings.lastActiveTabId) return;
+    chrome.tabs.sendMessage(settings.lastActiveTabId, { type: 'CLOSE_OVERLAY' }, () => void chrome.runtime.lastError);
+  });
+}
+
+function openWebcamWindow() {
+  return new Promise((resolve) => {
+    const url = chrome.runtime.getURL('webcam.html');
+    chrome.windows.create(
+      {
+        url,
+        type: 'popup',
+        width: 720,
+        height: 620,
+      },
+      () => resolve({ ok: true })
+    );
   });
 }
 

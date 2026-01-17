@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #10121b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.webcam-window {
+  width: min(720px, 94vw);
+  background: #1b1f2f;
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.webcam-window h1 {
+  margin: 0 0 8px 0;
+}
+
+.webcam-window p {
+  margin: 0 0 16px 0;
+  color: #c5c7d9;
+}
+
+#webcam-preview {
+  width: 100%;
+  border-radius: 14px;
+  background: #000;
+  max-height: 360px;
+  object-fit: cover;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ff004d;
+  color: #fff;
+}
+
+button#webcam-finish {
+  background: #2d2f3a;
+}
+
+.message {
+  margin-top: 12px;
+  font-weight: 700;
+  color: #ffcc00;
+}
