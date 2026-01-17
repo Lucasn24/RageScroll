@@ -3,37 +3,43 @@
 ## Files Created
 
 ### Core Extension (Manifest V3)
+
 - [x] **manifest.json** - Extension configuration, permissions, and metadata
-- [x] **service_worker.js** - Background worker for timing, state management, and messaging
-- [x] **content_script.js** - Injected into webpages for activity tracking and overlay display
+- [x] **src/scripts/service_worker.js** - Background worker for timing, state management, and messaging
+- [x] **src/scripts/content_script.js** - Injected into webpages for activity tracking and overlay display
 
 ### User Interface
-- [x] **popup.html** - Extension popup with countdown timer
-- [x] **popup.js** - Popup logic and controls
-- [x] **popup.css** - Popup styling with gradient theme
-- [x] **options.html** - Settings page for configuration
-- [x] **options.js** - Settings page logic
-- [x] **options.css** - Settings page styling
+
+- [x] **src/pages/popup.html** - Extension popup with countdown timer
+- [x] **src/scripts/popup.js** - Popup logic and controls
+- [x] **src/styles/popup.css** - Popup styling with gradient theme
+- [x] **src/pages/options.html** - Settings page for configuration
+- [x] **src/scripts/options.js** - Settings page logic
+- [x] **src/styles/options.css** - Settings page styling
 
 ### Overlay & Games
-- [x] **overlay.css** - Fullscreen break overlay with mini-game styles
-- Games embedded in content_script.js:
+
+- [x] **src/styles/overlay.css** - Fullscreen break overlay with mini-game styles
+- Games embedded in src/scripts/content_script.js:
   - [x] Mini Wordle (4-letter word guessing game)
   - [x] 4x4 Sudoku (number puzzle)
 
 ### Assets
+
 - [x] **icon16.png** - 16×16 toolbar icon
 - [x] **icon48.png** - 48×48 extension management icon
 - [x] **icon128.png** - 128×128 store icon
 
 ### Documentation
-- [x] **README.md** - Complete user guide and documentation
-- [x] **INSTALL.md** - Quick installation instructions
+
+- [x] **docs/README.md** - Complete user guide and documentation
+- [x] **docs/INSTALL.md** - Quick installation instructions
 - [x] **assets/README.md** - Icon information
 
 ## Features Implemented
 
 ### Core Functionality
+
 - [x] Configurable break intervals (1-120 minutes, default: 5)
 - [x] Website-specific activation with domain patterns
 - [x] Activity tracking (scroll, click, keypress, mousemove)
@@ -42,6 +48,7 @@
 - [x] User must complete game to dismiss
 
 ### User Controls
+
 - [x] Enable/disable toggle in popup
 - [x] Real-time countdown timer
 - [x] Break interval selector
@@ -50,12 +57,12 @@
 - [x] "Skip Next" button to reset timer
 
 ### Mini Games
+
 - [x] **Mini Wordle:**
   - 10-word dictionary embedded
   - 6 attempts to guess 4-letter word
   - Color-coded feedback (green/yellow/gray)
   - Keyboard and on-screen input
-  
 - [x] **4x4 Sudoku:**
   - 4 different puzzle variations
   - Pre-filled cells (read-only)
@@ -63,6 +70,7 @@
   - Random puzzle selection
 
 ### Technical Requirements
+
 - [x] Manifest V3 compliant
 - [x] Service worker (no background page)
 - [x] chrome.storage.sync for settings
@@ -72,6 +80,7 @@
 - [x] Clean code with comments
 
 ### UI/UX
+
 - [x] Modern gradient purple theme
 - [x] Responsive design
 - [x] Visual feedback for actions
@@ -83,12 +92,14 @@
 ## Testing Checklist
 
 ### Installation
+
 - [ ] Load unpacked in Chrome
 - [ ] Extension icon appears in toolbar
 - [ ] No console errors on load
 - [ ] Options page accessible
 
 ### Basic Functionality
+
 - [ ] Enable/disable toggle works
 - [ ] Countdown timer updates
 - [ ] Break interval changes apply
@@ -97,6 +108,7 @@
 - [ ] Settings persist after reload
 
 ### Activity Tracking
+
 - [ ] Scrolling triggers activity
 - [ ] Clicking triggers activity
 - [ ] Typing triggers activity
@@ -104,12 +116,14 @@
 - [ ] Only tracked on active domains
 
 ### Break Overlay
+
 - [ ] Appears after interval (test with 1 min)
 - [ ] Fullscreen overlay displays
 - [ ] Game selection buttons work
 - [ ] Cannot dismiss without completing
 
 ### Mini Wordle
+
 - [ ] Random word selected
 - [ ] Keyboard input works
 - [ ] On-screen keyboard works
@@ -119,6 +133,7 @@
 - [ ] Timer resets after completion
 
 ### 4x4 Sudoku
+
 - [ ] Puzzle displays correctly
 - [ ] Pre-filled cells are read-only
 - [ ] Only accepts numbers 1-4
@@ -127,6 +142,7 @@
 - [ ] Timer resets after completion
 
 ### Edge Cases
+
 - [ ] Works on different websites
 - [ ] Handles rapid domain changes
 - [ ] No conflicts with page JavaScript

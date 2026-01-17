@@ -8,34 +8,28 @@
     "48": "assets/icon48.png",
     "128": "assets/icon128.png"
   },
-  "permissions": [
-    "storage",
-    "activeTab",
-    "scripting"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "background": {
-    "service_worker": "service_worker.js"
+    "service_worker": "src/scripts/service_worker.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content_script.js", "notification.js"],
-      "css": ["overlay.css"],
+      "js": ["src/scripts/content_script.js", "src/scripts/notification.js"],
+      "css": ["src/styles/overlay.css"],
       "run_at": "document_idle"
     }
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "src/pages/popup.html",
     "default_icon": {
       "16": "assets/icon16.png",
       "48": "assets/icon48.png",
       "128": "assets/icon128.png"
     }
   },
-  "options_page": "options.html",
+  "options_page": "src/pages/options.html",
   "commands": {
     "toggle-extension": {
       "suggested_key": {
@@ -51,11 +45,5 @@
       },
       "description": "Skip next break"
     }
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["overlay.html"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }

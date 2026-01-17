@@ -54,9 +54,10 @@ Access via the popup's "⚙️ Settings" button or right-click the extension ico
   - Use `*` for all websites
   - Add specific domains like `twitter.com`, `reddit.com`
   - Quick presets available for popular sites
-hree game options:
+    hree game options:
 
 **📝 Mini Wordle**
+
 - Guess the 4-letter word
 - 6 attempts maximum
 - 50 words dictionary
@@ -66,12 +67,14 @@ hree game options:
   - ⬜ Gray = letter not in word
 
 **🔢 4x4 Sudoku**
+
 - Fill in numbers 1-4
 - Each row, column, and 2x2 box must contain 1-4
 - Pre-filled numbers cannot be changed
 - Click "Check Solution" when complete
 
 **🧠 Memory Match**
+
 - Find all 8 matching pairs
 - Click cards to reveal emojis
 - Match pairs to keep them revealed
@@ -80,26 +83,27 @@ hree game options:
 ### Statistics & Achievements
 
 View your progress by clicking "📊 View Statistics" in the settings page:
-notification.js            # Break warning notifications
-├── overlay.css                # Styles for fullscreen break overlay
-├── popup.html                 # Extension popup UI
-├── popup.js                   # Popup logic and countdown
-├── popup.css                  # Popup styles
-├── options.html               # Settings page UI
-├── options.js                 # Settings page logic
-├── options.css                # Settings page styles
-├── stats.html                 # Statistics page UI
-├── stats.js                   # Statistics tracking logic
-├── stats-page.js              # Statistics page logic
-├── stats.css                  # Statistics page styles
-├── shortcuts.html             # Keyboard shortcuts reference
+src/scripts/notification.js # Break warning notifications
+├── src/styles/overlay.css # Styles for fullscreen break overlay
+├── src/pages/popup.html # Extension popup UI
+├── src/scripts/popup.js # Popup logic and countdown
+├── src/styles/popup.css # Popup styles
+├── src/pages/options.html # Settings page UI
+├── src/scripts/options.js # Settings page logic
+├── src/styles/options.css # Settings page styles
+├── src/pages/stats.html # Statistics page UI
+├── src/scripts/stats.js # Statistics tracking logic
+├── src/scripts/stats-page.js # Statistics page logic
+├── src/styles/stats.css # Statistics page styles
+├── src/pages/shortcuts.html # Keyboard shortcuts reference
 ├── assets/
-│   ├── icon16.png            # 16x16 toolbar icon
-│   ├── icon48.png            # 48x48 management icon
-│   ├── icon128.png           # 128x128 store icon
-│   └── create_simple_icons.py # Icon generation script
+│ ├── icon16.png # 16x16 toolbar icon
+│ ├── icon48.png # 48x48 management icon
+│ ├── icon128.png # 128x128 store icon
+│ └── create_simple_icons.py # Icon generation script
 
 View all shortcuts in Settings → Keyboard Shortcuts
+
 - Each row, column, and 2x2 box must contain 1-4
 - Pre-filled numbers cannot be changed
 - Click "Check Solution" when complete
@@ -109,20 +113,31 @@ View all shortcuts in Settings → Keyboard Shortcuts
 ```
 RageScroll/
 ├── manifest.json              # Extension configuration (Manifest V3)
-├── service_worker.js          # Background worker for timing and state
-├── content_script.js          # Activity tracking and overlay injection
-├── overlay.css                # Styles for fullscreen break overlay
-├── popup.html                 # Extension popup UI
-├── popup.js                   # Popup logic and countdown
-├── popup.css                  # Popup styles
-├── options.html               # Settings page UI
-├── options.js                 # Settings page logic
-├── options.css                # Settings page styles
+├── src/
+│   ├── scripts/
+│   │   ├── service_worker.js  # Background worker for timing and state
+│   │   ├── content_script.js  # Activity tracking and overlay injection
+│   │   ├── notification.js    # Break warning notifications
+│   │   ├── popup.js           # Popup logic and countdown
+│   │   ├── options.js         # Settings page logic
+│   │   ├── stats.js           # Statistics tracking logic
+│   │   └── stats-page.js      # Statistics page logic
+│   ├── styles/
+│   │   ├── overlay.css        # Styles for fullscreen break overlay
+│   │   ├── popup.css          # Popup styles
+│   │   ├── options.css        # Settings page styles
+│   │   └── stats.css          # Statistics page styles
+│   └── pages/
+│       ├── popup.html         # Extension popup UI
+│       ├── options.html       # Settings page UI
+│       ├── stats.html         # Statistics page UI
+│       ├── shortcuts.html     # Keyboard shortcuts reference
+│       └── test.html          # Debug page
 ├── assets/
 │   ├── icon16.png            # 16x16 toolbar icon
 │   ├── icon48.png            # 48x48 management icon
 │   └── icon128.png           # 128x128 store icon
-└── README.md                  # This file
+└── docs/README.md             # This file
 ```
 
 ## Technical Details
@@ -161,31 +176,37 @@ RageScroll/
 ### Customization
 
 **Adding More Games:**
-- Edit [content_script.js](content_script.js)
+
+- Edit [src/scripts/content_script.js](../src/scripts/content_script.js)
 - Add new game initialization function
 - Update game selector in `showBreakOverlay()`
 
 **Changing Colors:**
-- Edit [overlay.css](overlay.css) and [popup.css](popup.css)
+
+- Edit [src/styles/overlay.css](../src/styles/overlay.css) and [src/styles/popup.css](../src/styles/popup.css)
 - Update gradient colors in `:root` or inline styles
 
 **Modifying Break Logic:**
-- Edit [service_worker.js](service_worker.js)
+
+- Edit [src/scripts/service_worker.js](../src/scripts/service_worker.js)
 - Adjust timing calculations in `handleActivityDetected()`
 
 ## Troubleshooting
 
 **Extension not working:**
+
 - Check that it's enabled in the popup
 - Verify current website is in your active domains list
 - Check Chrome DevTools console for errors
 
 **Overlay not showing:**
+
 - Ensure break interval has passed
 - Try clicking "Skip Next" to reset timer
 - Check that activity is being detected (scroll/click/type)
 
 **Games not loading:**
+
 - Hard refresh the page (Cmd+Shift+R / Ctrl+Shift+F5)
 - Check browser console for JavaScript errors
 - Reload the extension in `chrome://extensions/`
@@ -193,9 +214,9 @@ RageScroll/
 ## Tips
 
 - 💡 Start with shorter intervals (5-10 minutes) to build the habit
-- x] More mini-games (memory match added!)
-- [x] Break statistics and streak tracking
-- [x] Keyboard shortcuts
+- [ ] More mini-games (memory match added!)
+- [ ] Break statistics and streak tracking
+- [ ] Keyboard shortcuts
 - [ ] Customizable break duration
 - [ ] Sound effects and animations
 - [ ] Dark mode
@@ -220,6 +241,7 @@ Free to use and modify. Built as a productivity tool for healthier browsing habi
 ## Support
 
 For issues or suggestions, please check the extension's error console:
+
 1. Right-click the extension icon
 2. Select "Inspect popup" or check the service worker
 3. Review console errors
