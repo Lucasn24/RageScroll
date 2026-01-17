@@ -1,0 +1,413 @@
+/* Overlay Styles for RageScroll */
+
+.ragescroll-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ragescroll-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.ragescroll-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.ragescroll-header h1 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 32px;
+}
+
+.ragescroll-header p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.ragescroll-game-selector {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.game-btn {
+  flex: 1;
+  padding: 30px 20px;
+  font-size: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-weight: 600;
+}
+
+.game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.game-btn:active {
+  transform: translateY(0);
+}
+
+/* Wordle Styles */
+.wordle-game {
+  text-align: center;
+}
+
+.wordle-game h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.wordle-game p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.wordle-board {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wordle-row {
+  display: flex;
+  gap: 5px;
+}
+
+.wordle-cell {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #d3d6da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: white;
+  transition: all 0.3s;
+}
+
+.wordle-cell.wordle-correct {
+  background: #6aaa64;
+  color: white;
+  border-color: #6aaa64;
+}
+
+.wordle-cell.wordle-present {
+  background: #c9b458;
+  color: white;
+  border-color: #c9b458;
+}
+
+.wordle-cell.wordle-absent {
+  background: #787c7e;
+  color: white;
+  border-color: #787c7e;
+}
+
+.wordle-keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.wordle-key {
+  padding: 14px 10px;
+  min-width: 40px;
+  background: #d3d6da;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.wordle-key:hover {
+  background: #bbb;
+}
+
+.wordle-key-special {
+  background: #818384;
+  color: white;
+}
+
+.wordle-message {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 24px;
+  color: #FF5722;
+}
+
+/* Sudoku Styles */
+.sudoku-game {
+  text-align: center;
+}
+
+.sudoku-game h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.sudoku-game p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(4, 70px);
+  gap: 2px;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: #333;
+  padding: 2px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.sudoku-cell {
+  width: 70px;
+  height: 70px;
+  border: 1px solid #999;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  background: white;
+}
+
+.sudoku-cell:focus {
+  outline: 2px solid #667eea;
+  outline-offset: -2px;
+}
+
+.sudoku-cell.sudoku-given {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.sudoku-cell:disabled {
+  cursor: not-allowed;
+}
+
+.sudoku-controls {
+  margin: 20px 0;
+}
+
+.sudoku-btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  font-weight: 600;
+}
+
+.sudoku-btn:hover {
+  transform: translateY(-2px);
+}
+
+.sudoku-message {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 24px;
+}
+
+/* Memory Match Styles */
+.memory-game {
+  text-align: center;
+}
+
+.memory-game h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.memory-game p {
+  margin: 0 0 20px 0;
+  color: #666;
+}
+
+.memory-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.memory-stats strong {
+  color: #667eea;
+  font-size: 16px;
+}
+
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(4, 80px);
+  gap: 10px;
+  justify-content: center;
+  margin: 0 auto 20px;
+  perspective: 1000px;
+}
+
+.memory-card {
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.memory-card.flipped .memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched .memory-card-inner {
+  transform: rotateY(180deg);
+  opacity: 0.6;
+}
+
+.memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.memory-card-front,
+.memory-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 40px;
+}
+
+.memory-card-front {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: bold;
+}
+
+.memory-card-back {
+  background: white;
+  border: 3px solid #667eea;
+  transform: rotateY(180deg);
+}
+
+.memory-message {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  min-height: 24px;
+}
+
+/* Break Warning Notification */
+.ragescroll-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483646;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notification-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.notification-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.notification-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notification-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.notification-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

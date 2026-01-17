@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test RageScroll Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .success { color: green; }
+    .error { color: red; }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 RageScroll Extension Test</h1>
+  
+  <div class="test-section">
+    <h2>Extension Status</h2>
+    <p id="extension-status">Checking...</p>
+  </div>
+
+  <div class="test-section">
+    <h2>Storage Test</h2>
+    <button onclick="testStorage()">Test Storage</button>
+    <p id="storage-result"></p>
+  </div>
+
+  <div class="test-section">
+    <h2>Service Worker Test</h2>
+    <button onclick="testServiceWorker()">Test Service Worker</button>
+    <p id="sw-result"></p>
+  </div>
+
+  <div class="test-section">
+    <h2>Quick Actions</h2>
+    <button onclick="openPopup()">Open Extension Popup</button>
+    <button onclick="openOptions()">Open Options</button>
+    <button onclick="reloadExtension()">Reload Extension</button>
+  </div>
+
+  <div class="test-section">
+    <h2>Troubleshooting Steps</h2>
+    <ol>
+      <li>Open chrome://extensions/</li>
+      <li>Find RageScroll extension</li>
+      <li>Check if it's enabled (toggle should be blue)</li>
+      <li>Click "Errors" button if visible - check for errors</li>
+      <li>Click "Reload" button to refresh the extension</li>
+      <li>Try clicking the extension icon in the toolbar</li>
+    </ol>
+  </div>
+
+  <script>
+    async function testStorage() {
+      const result = document.getElementById('storage-result');
+      try {
+        await chrome.storage.sync.set({ test: 'working' });
+        const data = await chrome.storage.sync.get('test');
+        result.innerHTML = '<span class="success">✓ Storage working: ' + JSON.stringify(data) + '</span>';
+      } catch (error) {
+        result.innerHTML = '<span class="error">✗ Storage error: ' + error.message + '</span>';
+      }
+    }
+
+    async function testServiceWorker() {
+      const result = document.getElementById('sw-result');
+      try {
+        const response = await chrome.runtime.sendMessage({ type: 'GET_TIME_REMAINING' });
+        result.innerHTML = '<span class="success">✓ Service Worker responding: ' + JSON.stringify(response) + '</span>';
+      } catch (error) {
+        result.innerHTML = '<span class="error">✗ Service Worker error: ' + error.message + '</span>';
+      }
+    }
+
+    function openPopup() {
+      alert('Click the RageScroll icon in your Chrome toolbar (top-right, looks like a puzzle piece icon area)');
+    }
+
+    function openOptions() {
+      chrome.runtime.openOptionsPage();
+    }
+
+    function reloadExtension() {
+      chrome.runtime.reload();
+    }
+
+    // Check extension status
+    window.onload = async () => {
+      const statusEl = document.getElementById('extension-status');
+      try {
+        const manifest = chrome.runtime.getManifest();
+        statusEl.innerHTML = '<span class="success">✓ Extension loaded: ' + manifest.name + ' v' + manifest.version + '</span>';
+      } catch (error) {
+        statusEl.innerHTML = '<span class="error">✗ Extension not loaded properly</span>';
+      }
+    };
+  </script>
+</body>
+</html>

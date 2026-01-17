@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RageScroll Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <h1>🎮 RageScroll Settings</h1>
+      <p>Configure your micro-break preferences</p>
+    </header>
+
+    <main class="options-main">
+      <section class="settings-section">
+        <h2>General Settings</h2>
+        
+        <div class="setting-group">
+          <label class="setting-label">
+            <input type="checkbox" id="enabled" class="checkbox">
+            <span>Enable RageScroll</span>
+          </label>
+          <p class="setting-description">
+            Turn on/off the extension functionality
+          </p>
+        </div>
+
+        <div class="setting-group">
+          <label class="setting-label" for="break-interval">
+            Break Interval (minutes)
+          </label>
+          <p class="setting-description">
+            How often you'll be prompted to take a break
+          </p>
+          <div class="input-group">
+            <input 
+              type="number" 
+              id="break-interval" 
+              min="1" 
+              max="120" 
+              value="5"
+              class="input-number"
+            >
+            <span class="input-suffix">minutes</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>Active Websites</h2>
+        <p class="section-description">
+          Choose which websites will trigger micro-breaks. Leave empty or use "*" for all websites.
+        </p>
+
+        <div class="domain-list" id="domain-list">
+          <!-- Domains will be added here dynamically -->
+        </div>
+
+        <div class="add-domain-form">
+          <input 
+            type="text" 
+            id="domain-input" 
+            placeholder="e.g., twitter.com, reddit.com, or * for all"
+            class="input-text"
+          >
+          <button id="add-domain-btn" class="btn btn-primary">
+            Add Website
+          </button>
+        </div>
+
+        <div class="domain-presets">
+          <p class="presets-label">Quick presets:</p>
+          <button class="btn btn-small btn-preset" data-domain="*">All Sites</button>
+          <button class="btn btn-small btn-preset" data-domain="twitter.com">Twitter</button>
+          <button class="btn btn-small btn-preset" data-domain="reddit.com">Reddit</button>
+          <button class="btn btn-small btn-preset" data-domain="youtube.com">YouTube</button>
+          <button class="btn btn-small btn-preset" data-domain="facebook.com">Facebook</button>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h2>About</h2>
+        <div class="about-content">
+          <p>
+            <strong>RageScroll</strong> helps you maintain healthy browsing habits by encouraging 
+            regular micro-breaks with fun mini-games.
+          </p>
+          <p>
+            Version 1.0.0
+          </p>
+          <p class="about-tip">
+            💡 <strong>Tip:</strong> Set break intervals based on your browsing patterns. 
+            Shorter intervals (5-10 minutes) work well for intensive browsing sessions.
+          </p>
+          <p>
+            <a href="shortcuts.html" class="link-button">⌨️ View Keyboard Shortcuts</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="options-footer">
+      <button id="stats-btn" class="btn btn-secondary">
+        📊 View Statistics
+      </button>
+      <div class="save-status" id="save-status"></div>
+      <button id="save-btn" class="btn btn-primary btn-large">
+        Save Settings
+      </button>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

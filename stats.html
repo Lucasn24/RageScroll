@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RageScroll Statistics</title>
+  <link rel="stylesheet" href="stats.css">
+</head>
+<body>
+  <div class="stats-container">
+    <header class="stats-header">
+      <h1>📊 Your Break Statistics</h1>
+      <p>Track your healthy browsing habits</p>
+    </header>
+
+    <main class="stats-main">
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🎮</div>
+          <div class="stat-value" id="total-breaks">0</div>
+          <div class="stat-label">Total Breaks</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="current-streak">0</div>
+          <div class="stat-label">Day Streak</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="longest-streak">0</div>
+          <div class="stat-label">Best Streak</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">📅</div>
+          <div class="stat-value" id="today-breaks">0</div>
+          <div class="stat-label">Today's Breaks</div>
+        </div>
+      </section>
+
+      <section class="games-section">
+        <h2>Games Played</h2>
+        <div class="games-grid">
+          <div class="game-stat">
+            <span class="game-icon">📝</span>
+            <span class="game-name">Mini Wordle</span>
+            <span class="game-count" id="wordle-count">0</span>
+          </div>
+          <div class="game-stat">
+            <span class="game-icon">🔢</span>
+            <span class="game-name">4x4 Sudoku</span>
+            <span class="game-count" id="sudoku-count">0</span>
+          </div>
+          <div class="game-stat">
+            <span class="game-icon">🧠</span>
+            <span class="game-name">Memory Match</span>
+            <span class="game-count" id="memory-count">0</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="achievements-section">
+        <h2>Achievements</h2>
+        <div class="achievements-grid" id="achievements-grid">
+          <!-- Achievements will be added dynamically -->
+        </div>
+      </section>
+
+      <section class="actions-section">
+        <button class="btn btn-secondary" id="back-btn">← Back to Settings</button>
+        <button class="btn btn-danger" id="reset-btn">Reset Statistics</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="stats-page.js"></script>
+</body>
+</html>

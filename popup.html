@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RageScroll</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <h1>🎮 RageScroll</h1>
+      <p class="tagline">Take micro-breaks while browsing</p>
+    </div>
+
+    <div class="status-section">
+      <div class="status-card">
+        <div class="status-icon" id="status-icon">⏱️</div>
+        <div class="status-info">
+          <div class="status-label">Next Break In</div>
+          <div class="status-value" id="countdown">--:--</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toggle-section">
+      <label class="toggle-label">
+        <span>Enable RageScroll</span>
+        <input type="checkbox" id="enabled-toggle" class="toggle-input">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <div class="quick-settings">
+      <div class="setting-item">
+        <label for="interval-select">Break Interval</label>
+        <select id="interval-select" class="setting-select">
+          <option value="1">1 minute (testing)</option>
+          <option value="5" selected>5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="30">30 minutes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-secondary" id="options-btn">
+        ⚙️ Settings
+      </button>
+      <button class="btn btn-primary" id="skip-btn">
+        ⏭️ Skip Next
+      </button>
+    </div>
+
+    <div class="footer">
+      <p>Stay healthy, stay productive! 💪</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
