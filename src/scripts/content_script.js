@@ -917,7 +917,7 @@ async function closeOverlay(gameType) {
 }
 
 function initWebcamChallenge(container) {
-  const targetReps = 67;
+  const targetReps = 13;
   let reps = 0;
   let started = false;
   let startTime = null;
@@ -929,7 +929,7 @@ function initWebcamChallenge(container) {
       <p>Move your hands up and down with upward-facing palms, fast. Press space (or click Rep) for each rep.</p>
       <video class="webcam-preview" id="webcam-preview" autoplay playsinline muted></video>
       <div class="webcam-stats">
-        <span>Reps: <strong id="webcam-reps">0</strong> / ${targetReps}</span>
+        <span>Reps: <strong id="webcam-reps">0</strong> / 6+7</span>
         <span>Time: <strong id="webcam-time">${maxSeconds}</strong>s</span>
       </div>
       <div class="webcam-controls">
